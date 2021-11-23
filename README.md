@@ -7,4 +7,5 @@ JPanel
 JButton
 ActionListener
 
-![alt text](file:///Users/tsaba/Desktop/Screen%20Shot%202021-11-22%20at%2011.00.41%20PM.png)
+
+<img width="294" alt="Screen Shot 2021-11-22 at 11 00 41 PM" src="https://user-images.githubusercontent.com/36241267/142970649-96e4511d-97d8-43de-82e1-463bec393020.png">
