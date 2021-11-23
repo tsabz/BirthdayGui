@@ -20,12 +20,12 @@ import java.util.Date;
 
 public class BirthdayGUI implements ActionListener {
 	
-	private int ageCount = 0;
 	private JFrame appFrame;
 	private JPanel panel;
 	private JButton button;
 	private JLabel label;
 	private JTextField textField;
+	private Date bDay;
 	
 	public BirthdayGUI() {
 //		Frame
@@ -36,7 +36,7 @@ public class BirthdayGUI implements ActionListener {
 
 //		Show input example to user	
 		JLabel dateExample = new JLabel();
-		dateExample.setText("<html><p>Date input example: dd/MM/yyyy </p></html>");
+		dateExample.setText("<html><p>Date input example: DD-MM-YYYY </p></html>");
 		
 //		textField
 		textField = new JTextField(20);
@@ -80,28 +80,35 @@ public class BirthdayGUI implements ActionListener {
 //			assigns text to textBday
 			String textBday = label.getText();
 			
-//			parses text date to an actual date
-			Date birthDate = null;
+//			converts String date to java.utl.date class
+			SimpleDateFormat dateFormat=new SimpleDateFormat("dd-mm-yyyy");
+		
+			Date bDay = null;
 			try {
-				birthDate = new SimpleDateFormat("dd/MM/yyyy").parse(textBday);
+				bDay = dateFormat.parse(textBday);
 			} catch (ParseException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
+		
+//			Get's bDay time and converts it to milliseconds
+			long birthdayMillSec=System.currentTimeMillis()-bDay.getTime();
 			
-//			assign variable to today's date
-			LocalDate today = LocalDate.now();
+//			Calculates birthdayMillSec divided by milliseconds in a year
+//			one year in milliseconds = 1000 milliseconds/60 seconds/60 minutes/24 hours/ 365 days
+			long age=(long)((long)birthdayMillSec/(1000.0*60*60*24*365));
 			
-//			Calculates period between birthDate and today
-			
-			label.setText("Your Age is: " + birthDate + "\n" + today);
+			label.setText("Your Age is: " + age);
 			
 		}
 	}
 
 }
 
-//References
 
+
+//References
+// https://stackoverflow.com/questions/9141871/java-milliseconds-in-year
+// https://www.tutorialspoint.com/java/lang/system_currenttimemillis.htm
 // https://introcs.cs.princeton.edu/java/15inout/GUI.java.html
 // https://www.youtube.com/watch?v=dOvYkzKfsdg
